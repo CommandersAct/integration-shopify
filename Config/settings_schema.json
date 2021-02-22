@@ -1,0 +1,38 @@
+  {
+    "name": "Commanders Act",
+    "settings": [
+      {
+        "type": "text",
+        "id": "ca_account_id",
+        "label": "Commanders Act Account ID",
+        "info": "If you don't know it, contact your Commanders Act Consultant"
+      },
+      {
+        "type": "text",
+        "id": "ca_head_container_filename",
+        "label": "HEAD Container's filename",
+        "info": "Check your Tag Commander interface or contact a Commanders Act Consultant"
+      },
+      {
+        "type": "text",
+        "id": "ca_body_container_filename",
+        "label": "BODY Container's filename",
+        "info": "Check your Tag Commander interface or contact a Commanders Act Consultant"
+      },
+      {
+        "type": "text",
+        "id": "ca_environment",
+        "label": "Environment",
+        "default": "prod",
+        "info": "Which environment to load your tags from",
+        "placeholder": "prod"
+      },
+      {
+        "type": "checkbox",
+        "id": "ca_tagco_enabled",
+        "label": "Enable",
+        "default": false,
+        "info": "Check to enable CommandersAct"
+      }
+    ]
+  }
