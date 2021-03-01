@@ -9,23 +9,26 @@
       },
       {
         "type": "text",
-        "id": "ca_head_container_filename",
-        "label": "HEAD Container's filename",
+        "id": "ca_container_filename",
+        "label": "Container's filename",
         "info": "Check your Tag Commander interface or contact a Commanders Act Consultant"
       },
       {
-        "type": "text",
-        "id": "ca_body_container_filename",
-        "label": "BODY Container's filename",
-        "info": "Check your Tag Commander interface or contact a Commanders Act Consultant"
-      },
-      {
-        "type": "text",
+        "type": "radio",
         "id": "ca_environment",
         "label": "Environment",
-        "default": "prod",
-        "info": "Which environment to load your tags from",
-        "placeholder": "prod"
+        "options": [
+          {
+            "value": "\/uat",
+            "label": "UAT"
+          },
+          {
+            "value": "",
+            "label": "Production"
+          }
+        ],
+        "default": "\/uat",
+        "info": "Commanders Act environment, see the deploy tab in the TagCommander interface"
       },
       {
         "type": "checkbox",
