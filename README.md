@@ -8,3 +8,4 @@ This procedure will achieve the following:
 * A TagCommander Account with CDN enabled, if you don't have one, please reach out to Commanders Act, the contacts are on this page: https://www.commandersact.com/en/contact/
 * This setup has been designed for a CDN connector provided by TagCommander, if you don't have one or aren't sure, please contact Commanders Act
 * This setup allows only one container to be added to the site, should you need more, please contact your dedicated Commanders Act consultant
+* It is **highly recommended** to use a Shopify **Plus** account. The integration is still possible with the basic Shopify account; however, the checkout steps won't be tracked and some custom code will have to be injected on the Thank You page if you want to be able to track conversion. With the Shopify Plus account you won't need anything else.
