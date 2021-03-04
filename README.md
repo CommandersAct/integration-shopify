@@ -21,3 +21,50 @@ The folders which are relevant for the installation are Config and Snippets, you
   ![TagCo_filename_path](/Screenshots/TagCo_filename_path.png)
   
   ![TagCo_filename](/Screenshots/containers_file_name.png)
+## Steps
+1. Adding the settings panel. You need to navigate to Config/settings_schema.json and open it in the editor:
+
+  ```javascript
+	
+  {
+    "name": "Commanders Act",
+    "settings": [
+      {
+        "type": "text",
+        "id": "ca_account_id",
+        "label": "Commanders Act Account ID",
+        "info": "If you don't know it, contact your Commanders Act Consultant"
+      },
+      {
+        "type": "text",
+        "id": "ca_container_filename",
+        "label": "Container's filename",
+        "info": "Check your Tag Commander interface or contact a Commanders Act Consultant"
+      },
+      {
+        "type": "radio",
+        "id": "ca_environment",
+        "label": "Environment",
+        "options": [
+          {
+            "value": "\/uat",
+            "label": "UAT"
+          },
+          {
+            "value": "",
+            "label": "Production"
+          }
+        ],
+        "default": "\/uat",
+        "info": "Commanders Act environment, see the deploy tab in the TagCommander interface"
+      },
+      {
+        "type": "checkbox",
+        "id": "ca_tagco_enabled",
+        "label": "Enable",
+        "default": false,
+        "info": "Check to enable CommandersAct"
+      }
+    ]
+  }
+  ```
