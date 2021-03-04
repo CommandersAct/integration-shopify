@@ -1,1 +1,1 @@
-# ![TagCo logo](/Screenshots/tag.png)
+# ![TagCo logo](/Screenshots/tag.png) Shopify Integration
