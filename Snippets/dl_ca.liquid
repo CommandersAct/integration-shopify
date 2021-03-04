@@ -5,10 +5,15 @@
   var tc_current_cart = {};
   var tc_current_cart_item = {};
   var tc_current_cart_item_list = [];
+  var tc_current_checkout_item_list = [];
+  var tc_current_checkout_item = {};
 {% if cart %}
   tc_current_cart = {
-  	"cart_total_items": "{{ cart.item_count }}",
-  	"cart_total_value": "{{ cart.total_price | money_without_currency }}",
+  	"cart_item_count": "{{ cart.item_count }}",
+  	"cart_total_price": "{{ cart.total_price | money_without_currency }}",
+    "cart_original_total_price": "{{ cart.original_total_price | money_without_currency }}",
+    "cart_total_discount": "{{ cart.total_discount | money_without_currency }}",
+    "cart_currency": "{{ cart.currency.iso_code }}",
   };
   {% for item in cart.items %}
   	tc_current_cart_item = {
@@ -17,16 +22,30 @@
       "product_unitprice": "{{ item.price | money_without_currency }}",
       "product_name": "{{ item.title }}",
       "product_sku": "{{ item.sku }}",
+      "product_vendor": "{{ item.vendor }}",
   	}
     tc_current_cart_item_list.push(tc_current_cart_item);
   {% endfor %}
-  tc_current_cart.item_list = tc_current_cart_item_list;
+  	tc_current_cart.item_list = tc_current_cart_item_list;
+{% endif %}
+{% if checkout %}
+  {% for item in checkout.line_items %}
+  	tc_current_checkout_item = {
+      "product_id":"{{ item.product_id }}",
+      "product_sku":"{{ item.sku }}",
+      "product_vendor":"{{ item.vendor }}",
+      "product_qty": "{{ item.quantity }}",
+      "product_name": "{{ item.title }}",
+      "product_unitprice":"{{ item.unit_price | money_without_currency }}",
+      "product_originalprice":"{{ item.original_price | money_without_currency }}",
+  	}
+    tc_current_checkout_item_list.push(tc_current_checkout_item);
+  {% endfor %}
 {% endif %}
 {% if template.name == 'product' %}
   tc_current_product = {
     "product_id" : "{{ product.id }}",
     "product_name" : "{{ product.title }}",
-    "product_brand" : "{{ product.vendor }}",
     "product_url": "{{ product.url }}",
     "product_vendor": "{{ product.vendor }}",
     {% for variant in product.variants %}
@@ -44,9 +63,8 @@
   		  tc_current_product = {
     		"product_id" : "{{ item.id }}",
     		"product_name" : "{{ item.title }}",
-    		"product_brand" : "{{ item.vendor }}",
+    		"product_vendor" : "{{ item.vendor }}",
     		"product_url": "{{ item.url }}",
-    		"product_vendor": "{{ item.vendor }}",
     		{% for variant in item.variants %}
       			{% if variant.price == item.price_min %}
         			"product_unitprice" : "{{ variant.price | money_without_currency }}",
@@ -62,7 +80,6 @@
   		  tc_current_product = {
     		"product_id" : "{{ product.id }}",
     		"product_name" : "{{ product.title }}",
-    		"product_brand" : "{{ product.vendor }}",
             "product_url": "{{ product.url }}",
     		"product_vendor": "{{ product.vendor }}",
     		{% for variant in product.variants %}
@@ -79,13 +96,14 @@
     "site_section": "{{ section }}",
     "env_template": {% if template.name %} "{{ template.name }}" {% elsif checkout %} (function() { if(Shopify.Checkout && Shopify.Checkout.page == 'thank_you'){ return "order_confirmation" } else { return "checkout" }})(){% else %} ""  {% endif %},
     "ca_environment":"{{ settings.ca_environment }}",
-	"env_language": "{{ shop.locale }}",
+	"shop_locale": "{{ shop.locale }}",
+    "shop_currency":"{{ shop.currency }}",
 {% if customer %}
-	"user_logged": "1",
-	"user_id": "{{ customer.id }}",
-    "user_email": "{{ customer.email }}",
-	"user_first_name": "{{ customer.first_name }}",
-	"user_last_name": "{{ customer.last_name }}",
+	"customer_logged": "1",
+	"customer_id": "{{ customer.id }}",
+    "customer_email": "{{ customer.email }}",
+	"customer_first_name": "{{ customer.first_name }}",
+	"customer_last_name": "{{ customer.last_name }}",
  	{% if customer.default_address %}
     	"country_code": "{{ customer.default_address.country_code }}",
 	{% endif %}
@@ -95,15 +113,17 @@
     "product_list": tc_current_product_list,
     "cart": tc_current_cart,
 {% if template.name == 'search' %}
-    "search_keyword": "{{ search.terms }}",
+    "search_keywords": "{{ search.terms }}",
 {% endif %}  
 {% if checkout %}
     //checkout  variables
     "checkout_order_id": "{{ checkout.order_id }}",
     "checkout_order_number": "{{ checkout.order_number }}",
-    "checkout_shipping_price": "{{ checkout.shipping_price }}",
-    "checkout_total_price": "{{ checkout.total_price }}",
-    "checkout_tax_price": "{{ checkout.tax_price }}",
+    "checkout_shipping_price": "{{ checkout.shipping_price | money_without_currency }}",
+    "checkout_total_price": "{{ checkout.total_price | money_without_currency }}",
+    "checkout_tax_price": "{{ checkout.tax_price | money_without_currency }}",
+    "checkout_currency":"{{ checkout.currency }}",
+    "checkout_items": tc_current_checkout_item_list,
 {% endif %}
   };
 {% if settings.ca_environment != ''  %}
