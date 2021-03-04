@@ -68,3 +68,7 @@ The folders which are relevant for the installation are Config and Snippets, you
     ]
   }
   ```
+2. Adding the container
+3. Adding the datalayer
+4. Including the setup on the pages
+5. Including the setup in the checkout tunnel
