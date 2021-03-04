@@ -5,6 +5,27 @@
   var tc_current_cart = {};
   var tc_current_cart_item = {};
   var tc_current_cart_item_list = [];
+  var tc_vars = tc_vars || {};
+  var tc_current_collection_id = "";
+  var tc_current_collection_name = "";
+  var tc_checkout_item_list = [];
+  var tc_current_checkout_item = {};
+  
+{% if checkout %}
+  {% for item in checkout.line_items %}
+  tc_current_checkout_item = {
+    "product_id": "{{ item.product.product_id }}",
+    "product_qty": "{{ item.product.quantity }}",
+    "product_unitprice": "{{ item.product.price | money_without_currency }}",
+    "product_name": "{{ item.product.title }}",
+    "product_sku": "{{ item.product.sku }}",
+    "product_url": "{{ item.product.url }}",
+    "product_vendor": "{{ item.product.vendor }}",
+    "product_collections":(function(){ return [{% for collection in item.product.collections %}"{{ collection.title }}",{% endfor %}];})(),
+  }
+    tc_checkout_item_list.push(tc_current_checkout_item);
+  {% endfor %}
+{% endif %}  
 {% if cart %}
   tc_current_cart = {
   	"cart_total_items": "{{ cart.item_count }}",
@@ -17,6 +38,9 @@
       "product_unitprice": "{{ item.price | money_without_currency }}",
       "product_name": "{{ item.title }}",
       "product_sku": "{{ item.sku }}",
+      "product_url": "{{ item.url }}",
+      "product_vendor": "{{ item.vendor }}",
+      "product_collections":(function(){ return [{% for collection in item.collections %}"{{ collection.title }}",{% endfor %}];})(),
   	}
     tc_current_cart_item_list.push(tc_current_cart_item);
   {% endfor %}
@@ -26,9 +50,10 @@
   tc_current_product = {
     "product_id" : "{{ product.id }}",
     "product_name" : "{{ product.title }}",
-    "product_brand" : "{{ product.vendor }}",
     "product_url": "{{ product.url }}",
     "product_vendor": "{{ product.vendor }}",
+    "product_sku": "{{ product.sku }}",
+    "product_collections":(function(){ return [{% for collection in product.collections %}"{{ collection.title }}",{% endfor %}];})(),
     {% for variant in product.variants %}
       {% if variant.price == product.price_min %}
         "product_unitprice" : "{{ variant.price | money_without_currency }}",
@@ -44,9 +69,10 @@
   		  tc_current_product = {
     		"product_id" : "{{ item.id }}",
     		"product_name" : "{{ item.title }}",
-    		"product_brand" : "{{ item.vendor }}",
     		"product_url": "{{ item.url }}",
     		"product_vendor": "{{ item.vendor }}",
+            "product_sku": "{{ item.sku }}",
+            "product_collections":(function(){ return [{% for collection in item.collections %}"{{ collection.title }}",{% endfor %}];})(),
     		{% for variant in item.variants %}
       			{% if variant.price == item.price_min %}
         			"product_unitprice" : "{{ variant.price | money_without_currency }}",
@@ -58,13 +84,16 @@
   	{% endif %}
   {% endfor %}
 {% elsif template.name == 'collection' %}
+  tc_current_collection_id = "{{ collection.id }}";
+  tc_current_collection_name = "{{ collection.title }}";
     {% for product in collection.products %}
   		  tc_current_product = {
     		"product_id" : "{{ product.id }}",
     		"product_name" : "{{ product.title }}",
-    		"product_brand" : "{{ product.vendor }}",
             "product_url": "{{ product.url }}",
     		"product_vendor": "{{ product.vendor }}",
+            "product_sku":"{{ product.sku }}",
+            "product_collections":(function(){ return [{% for collection in product.collections %}"{{ collection.title }}",{% endfor %}];})(),
     		{% for variant in product.variants %}
       			{% if variant.price == product.price_min %}
 			        "product_unitprice" : "{{ variant.price | money_without_currency }}",
@@ -78,7 +107,7 @@
   var tc_vars = {
     "site_section": "{{ section }}",
     "env_template": {% if template.name %} "{{ template.name }}" {% elsif checkout %} (function() { return Shopify.Checkout.page; } )(){% else %} ""  {% endif %},
-    "ca_environment":"{{ settings.ca_environment }}",
+    "ca_environment":"{% if settings.ca_environment != '' %}uat{% else %}prod{% endif %}",
 	"env_language": "{{ shop.locale }}",
 {% if customer %}
 	"user_logged": "1",
@@ -90,7 +119,7 @@
     	"country_code": "{{ customer.default_address.country_code }}",
 	{% endif %}
 {% else %}
-  "user_logged": "0",
+  	"user_logged": "0",
 {% endif %}
     "product_list": tc_current_product_list,
     "cart": tc_current_cart,
@@ -106,15 +135,22 @@
     "checkout_tax_price": "{{ checkout.tax_price }}",
     "checkout_items_subtotal_price": "{{ checkout.line_items_subtotal_price | money_without_currency }}",
     "checkout_discounts_amount": "{{ checkout.discounts_amount | money_without_currency }}",
+    "checkout_items": tc_checkout_item_list,
     "checkout_email": "{{ checkout.email }}",
     {% if transaction %}
     	"checkout_payment_method": "{{ transaction.gateway }}",
     {% endif %}
     {% if checkout.customer %}
-    	"checkout_new_customer": {% if checkout.customer.last_order %}"N"{% else %} "Y" {% endif %},
+    	"checkout_newcustomer": {% if checkout.customer.last_order %}"N"{% else %} "Y" {% endif %},
     {% endif %}
 {% endif %}
   };
+  if(tc_current_collection_id) {
+    tc_vars.collection_id = tc_current_collection_id;
+  }
+  if(tc_current_collection_name) {
+    tc_vars.collection_name = tc_current_collection_name;
+  }
 {% if settings.ca_environment != ''  %}
 // add here any console logging
 {% endif %}
