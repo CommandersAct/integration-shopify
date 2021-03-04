@@ -16,7 +16,7 @@ It should be feasible in between 5 minutes and 1/2 hour depending on the user's 
   ![TagCo screenshot](/Screenshots/TagCo_Account_ID.png)
 * Your TagCommander container's filename, if you don't know it, you can find it in here:
 
-  ![TagCo_filename_path][/Screenshots/TagCo_filename_path.png)
+  ![TagCo_filename_path](/Screenshots/TagCo_filename_path.png)
   
   ![TagCo_filename](/Screenshots/containers_file_name.png)
 ## Structure of this repository
