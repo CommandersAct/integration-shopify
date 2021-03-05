@@ -87,9 +87,26 @@ This is what the editor should now look like, with the added code (1) . Now you 
 Congratulations ! You have now installed the config panel for your TagCommander Shopify Installation. 
 
 ### 2. Configuring the module
+Go to the configuration panel which has been created with the step 1. You can do that via Online Store -> Themes -> Customize
 
+![Shopify_path_to_config_panel_1](/Screenshots/Shopify_path_to_config_panel_1.png)
 
-2. Adding the container
+You'll see a new entry in the Theme settings menu:
+
+![Shopify_path_to_config_panel_2](/Screenshots/Shopify_path_to_config_panel_2.png)
+
+Click on it and you'll get to the actual Commanders Act configuration panel:
+
+![Shopify_config_panel](/Screenshots/Shopify_config_panel.png)
+
+here you will enter the TagCommander (Commanders Act) account ID and the container's filename, as explained in the Prerequisites section.
+Environment is normally UAT for your test environment, if you have one, Production otherwise. This will reflect the two deployment connectors which you normally should have configured in TagCommander:
+
+![UAT_prod_TagCo](/Screenshots/UAT_prod_TagCo.png)
+
+### 2. Adding the container
+Go back to the Theme Code edit section, as you did in Step 1.
+
 3. Adding the datalayer
 4. Including the setup on the pages
 5. Including the setup in the checkout tunnel
