@@ -104,7 +104,9 @@ Environment is normally UAT for your test environment, if you have one, Producti
 
 ![UAT_prod_TagCo](/Screenshots/UAT_prod_TagCo.png)
 
-2. Adding the container
+### 2. Adding the container
+Go back to the Theme Code edit section, as you did in Step 1.
+
 3. Adding the datalayer
 4. Including the setup on the pages
 5. Including the setup in the checkout tunnel
