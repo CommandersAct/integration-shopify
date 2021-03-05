@@ -22,7 +22,17 @@ The folders which are relevant for the installation are Config and Snippets, you
   
   ![TagCo_filename](/Screenshots/containers_file_name.png)
 ## Steps
-1. Adding the settings panel. You need to navigate to Config/settings_schema.json and open it in the editor:
+### 1. Adding the settings panel. 
+You need to navigate to Config/settings_schema.json and open it in the editor. To do that follow Themes -> Actions -> Edit code as shown below:
+
+![Shopify_path_editcode](/Screenshots/Shopify_path_editcode.png)
+
+At this point, scroll down the code folders to locate the Config folder (1), locate the settings_schema.json file and edit it by double clicking on it.
+In the editor, **locate the last closing curly bracket** (3). 
+
+![Shopify_locate_closing_curly](/Screenshots/Shopify_locate_closing_curly.png)
+
+At this point, add a comma after the closing curly bracket, copy the code below and pste it into the editor:
 
   ```javascript
 	
@@ -68,6 +78,13 @@ The folders which are relevant for the installation are Config and Snippets, you
     ]
   }
   ```
+This code can also be found, if you prefer, in the config folder of this repository, in the file setting_schema_PARTIAL.json. 
+
+This is what the editor should now look like, with the added code (1) . Now you can save the file (2):
+
+![Shopify_config_json_paste](/Screenshots/Shopify_config_json_paste.png)
+
+
 2. Adding the container
 3. Adding the datalayer
 4. Including the setup on the pages
