@@ -23,7 +23,7 @@ The folders which are relevant for the installation are Config and Snippets, you
   ![TagCo_filename](/Screenshots/containers_file_name.png)
 ## Steps
 ### 1. Adding the settings panel. 
-You need to navigate to Config/settings_schema.json and open it in the editor. To do that follow Themes -> Actions -> Edit code as shown below:
+You need to navigate to Config/settings_schema.json and open it in the editor. To do that follow Online Store -> Themes -> Actions -> Edit code as shown below:
 
 ![Shopify_path_editcode](/Screenshots/Shopify_path_editcode.png)
 
@@ -83,6 +83,10 @@ This code can also be found, if you prefer, in the config folder of this reposit
 This is what the editor should now look like, with the added code (1) . Now you can save the file (2):
 
 ![Shopify_config_json_paste](/Screenshots/Shopify_config_json_paste.png)
+
+Congratulations ! You have now installed the config panel for your TagCommander Shopify Installation. 
+
+### 2. Configuring the module
 
 
 2. Adding the container
