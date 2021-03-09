@@ -114,8 +114,25 @@ Environment is normally UAT for your test environment, if you have one, Producti
 	![Shopify_save_template](/Screenshots/Shopify_save_template.png)
 	
 ### 3. Adding the datalayer
-Create a new snippets, much the same way as you did in "Adding the container" step, using the content of this repository's file Snippets/dl_ca.liquid . Remember to use the exact same filename.
-### 4. Including the setup on the pages
+Create a new snippets, much the same way as you did in "Adding the container" step, using the content of this repository's file Snippets/dl_ca.liquid . Remember to use the exact same filename "dl_ca.liquid"
+### 4. Including the setup on the pages and checkout tunnel
+Go back to the Theme Code edit section, as you did in Step 1.
+1. Scroll to Layout. You'll see the layout files. Typically you'll have theme.liquid and checkout.liquid (only the former if you don't have the **Plus** version of Shopify)
+2. Copy the following two lines into the clipboard
+	```twig
+		<!-- inclusion of TagCommander -->
+		{% include 'tagco' %}  
+	```
+3. Paste the code in the theme.liquid and checkout.liquid templates, just above the closing </body> tag and save the layout:
+	![Shopify_add_inclusion_in_layout](/Screenshots/Shopify_add_inclusion_in_layout.png)
 
-### 5. Including the setup in the checkout tunnel
-### 6. QA the setup
+### 5. QA the setup
+**Congratulations ! You have installed TagCommander in your Shopify store !**
+To perform a basic check on the setup, install the Commanders Act chrome extension if you don't have it already. Just search for it with any search engine.
+1. Navigate to your site
+2. open the Commanders Act widget and see the container and the active tags (if there are any):
+	![site_ca_widget_demo](/Screenshots/site_ca_widget_demo.png)
+3. Open the browsers console by hitting F12 or right-click and inspect anywhere on the screen
+4. Make sure you're on the console tab
+5. on the command line enter "tc_vars" ; this will visualize the datalayer :
+	![site_console_dl_qa](/Screenshots/site_console_dl_qa.png)
