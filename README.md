@@ -136,3 +136,5 @@ To perform a basic check on the setup, install the Commanders Act chrome extensi
 4. Make sure you're on the console tab
 5. on the command line enter "tc_vars" ; this will visualize the datalayer :
 	![site_console_dl_qa](/Screenshots/site_console_dl_qa.png)
+## Licence
+See the LICENCE file for details.
