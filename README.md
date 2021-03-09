@@ -105,8 +105,17 @@ Environment is normally UAT for your test environment, if you have one, Producti
 ![UAT_prod_TagCo](/Screenshots/UAT_prod_TagCo.png)
 
 ### 2. Adding the container
-Go back to the Theme Code edit section, as you did in Step 1.
+1. Navigate this repository to Snippets/tagco.liquid 
+2. Copy the content of the file into the clipboard (Ctrl-C in Windows).
+3. Go back to the Theme Code edit section, as you did in Step 1. 
+4. Scroll to Snippets -> Add a new snippet and create a snippet with exactly the same filename as the file  in the repository, i.e. "tagco.liquid" 
+	![Shopify_add_new_snippet](/Screenshots/Shopify_add_new_snippet.png)
+5. Paste the code in the editor (Ctrl-V in Windows) and save
+	![Shopify_save_template](/Screenshots/Shopify_save_template.png)
+	
+### 3. Adding the datalayer
+Create a new snippets, much the same way as you did in "Adding the container" step, using the content of this repository's file Snippets/dl_ca.liquid . Remember to use the exact same filename.
+### 4. Including the setup on the pages
 
-3. Adding the datalayer
-4. Including the setup on the pages
-5. Including the setup in the checkout tunnel
+### 5. Including the setup in the checkout tunnel
+### 6. QA the setup
