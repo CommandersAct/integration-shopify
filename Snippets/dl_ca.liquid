@@ -14,11 +14,11 @@
 {% if checkout %}
   {% for item in checkout.line_items %}
   tc_current_checkout_item = {
-    "product_id": "{{ item.product.product_id }}",
-    "product_qty": "{{ item.product.quantity }}",
+    "product_id": "{{ item.product_id }}",
+    "product_qty": "{{ item.quantity }}",
     "product_unitprice": "{{ item.product.price | money_without_currency }}",
     "product_name": "{{ item.product.title }}",
-    "product_sku": "{{ item.product.sku }}",
+    "product_sku": "{{ item.sku }}",
     "product_url": "{{ item.product.url }}",
     "product_vendor": "{{ item.product.vendor }}",
     "product_collections":(function(){ return [{% for collection in item.product.collections %}"{{ collection.title }}",{% endfor %}];})(),
@@ -30,6 +30,7 @@
   tc_current_cart = {
   	"cart_total_items": "{{ cart.item_count }}",
   	"cart_total_value": "{{ cart.total_price | money_without_currency }}",
+    "cart_currency":"{{ cart.currency.iso_code }}",
   };
   {% for item in cart.items %}
   	tc_current_cart_item = {
@@ -106,9 +107,10 @@
 {% endif %}
   var tc_vars = {
     "site_section": "{{ section }}",
-    "env_template": {% if template.name %} "{{ template.name }}" {% elsif checkout %} (function() { return Shopify.Checkout.page; } )(){% else %} ""  {% endif %},
+    "env_template": {% if template.name %}"{{ template.name }}"{% elsif checkout %}(function() { if(typeof Shopify === 'object' && typeof Shopify.Checkout !== 'undefined') return Shopify.Checkout.step; } )()  {% else %} ""  {% endif %},
     "ca_environment":"{% if settings.ca_environment != '' %}uat{% else %}prod{% endif %}",
 	"env_language": "{{ shop.locale }}",
+    "shop_currency": (function() { if(typeof Shopify === 'object' && typeof Shopify.currency !== 'undefined') return Shopify.currency.active; })(),
 {% if customer %}
 	"user_logged": "1",
 	"user_id": "{{ customer.id }}",
@@ -130,15 +132,16 @@
     //checkout  variables
     "checkout_order_id": "{{ checkout.order_id }}",
     "checkout_order_number": "{{ checkout.order_number }}",
-    "checkout_shipping_price": "{{ checkout.shipping_price }}",
-    "checkout_total_price": "{{ checkout.total_price }}",
-    "checkout_tax_price": "{{ checkout.tax_price }}",
+    "checkout_shipping_price": "{{ checkout.shipping_price | money_without_currency }}",
+    "checkout_total_price": "{{ checkout.total_price | money_without_currency }}",
+    "checkout_tax_price": "{{ checkout.tax_price | money_without_currency }}",
     "checkout_items_subtotal_price": "{{ checkout.line_items_subtotal_price | money_without_currency }}",
     "checkout_discounts_amount": "{{ checkout.discounts_amount | money_without_currency }}",
+    "checkout_currency": "{{ checkout.currency.iso_code }}",
     "checkout_items": tc_checkout_item_list,
     "checkout_email": "{{ checkout.email }}",
-    {% if transaction %}
-    	"checkout_payment_method": "{{ transaction.gateway }}",
+    {% if checkout.transactions %}
+    "checkout_payment_method": "{% for transaction in checkout.transactions %}{% if transaction.gateway %}{{ transaction.gateway }}{% endif %}{% endfor %}",
     {% endif %}
     {% if checkout.customer %}
     	"checkout_newcustomer": {% if checkout.customer.last_order %}"N"{% else %} "Y" {% endif %},
