@@ -86,7 +86,7 @@ This is what the editor should now look like, with the added code (1) . Now you 
 
 Congratulations ! You have now installed the config panel for your TagCommander Shopify Installation. 
 
-### 3. Configuring the module
+### 2. Configuring the module
 Go to the configuration panel which has been created with the step 1. You can do that via Online Store -> Themes -> Customize
 
 ![Shopify_path_to_config_panel_1](/Screenshots/Shopify_path_to_config_panel_1.png)
@@ -104,7 +104,7 @@ Environment is normally UAT for your test environment, if you have one, Producti
 
 ![UAT_prod_TagCo](/Screenshots/UAT_prod_TagCo.png)
 
-### 4. Adding the container
+### 3. Adding the container
 1. Navigate this repository to Snippets/tagco.liquid 
 2. Copy the content of the file into the clipboard (Ctrl-C in Windows).
 3. Go back to the Theme Code edit section, as you did in Step 1. 
