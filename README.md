@@ -115,9 +115,9 @@ Environment is normally UAT for your test environment, if you have one, Producti
 	
 ### 4. Adding the datalayer
 Create a new snippets, much the same way as you did in "Adding the container" step, using the content of this repository's file Snippets/dl_ca.liquid . Remember to use the exact same filename "dl_ca.liquid"
-### 5. Including the setup on the pages and checkout tunnel
+### 5a. Including the setup on the pages and checkout tunnel - Shopify **Plus**
 Go back to the Theme Code edit section, as you did in Step 1.
-1. Scroll to Layout. You'll see the layout files. Typically you'll have theme.liquid and checkout.liquid (only the former if you don't have the **Plus** version of Shopify)
+1. Scroll to Layout. You'll see the layout files. Typically you'll have theme.liquid and checkout.liquid 
 2. Copy the following two lines into the clipboard
 
 	```twig
@@ -128,6 +128,19 @@ Go back to the Theme Code edit section, as you did in Step 1.
 
 	![Shopify_add_inclusion_in_layout](/Screenshots/Shopify_add_inclusion_in_layout.png)
 
+### 5b. Including the setup on the checkout tunnel - Shopify **Basic** --UNDER CONSTRUCTION--
+Go back to the Theme Code edit section, as you did in Step 1.
+1. Scroll to Layout. You'll see the layout files. Typically you'll have theme.liquid
+2. Copy the following two lines into the clipboard
+
+	```twig
+		<!-- inclusion of TagCommander -->
+		{% include 'tagco' %}  
+	```
+3. Paste the code in the theme.liquid template, just above the closing ```</body>``` tag and save the layout:
+
+	![Shopify_add_inclusion_in_layout](/Screenshots/Shopify_add_inclusion_in_layout.png)
+4. --UNDER CONSTRUCTION--
 ### 6. QA the setup
 **Congratulations ! You have installed TagCommander in your Shopify store !**
 To perform a basic check on the setup, install the Commanders Act chrome extension if you don't have it already. Just search for it with any search engine.
