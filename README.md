@@ -140,7 +140,23 @@ Go back to the Theme Code edit section, as you did in Step 1.
 3. Paste the code in the theme.liquid template, just above the closing ```</body>``` tag and save the layout:
 
 	![Shopify_add_inclusion_in_layout](/Screenshots/Shopify_add_inclusion_in_layout.png)
-4. --UNDER CONSTRUCTION--
+	
+4. Go to Admin->Settings->Checkout as shown below
+	
+	![Shopify Basic Checkout Pers 1](/Screenshots/shopify_basic_checkout_pers_1.png)
+
+5. In the Checkout section, scroll down to "Order Processing" and paste the code of the snippet dl_tagco_checkout_basic.liquid into the field "additional scripts" as shown below:
+
+	![Shopify Basic Checkout Pers 2](/Screenshots/Shopify_basic_checkout_pers_2.png)
+	
+6. Manually edit the beginning of the code, in particular the lines:
+{% assign ca_account_id = "0000" %} 		{% comment %} you need to enter your TagCommander account ID here 		{% endcomment %}
+{% assign ca_container_filename = ""%} 		{% comment %} you need to enter your TagCommander container file name here 	{% endcomment %}
+{% assign ca_environment = "" %}		{% comment %} enter exactly "\/uat" for UAT environment, leave empty for Prod 	{% endcomment %}
+{% assign ca_tagco_enabled = true %}		{% comment %} enter false to disable TagCommander				{% endcomment %}
+
+7. Scroll down and save
+
 ### 6. QA the setup
 **Congratulations ! You have installed TagCommander in your Shopify store !**
 To perform a basic check on the setup, install the Commanders Act chrome extension if you don't have it already. Just search for it with any search engine.
