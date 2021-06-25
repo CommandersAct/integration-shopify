@@ -1,9 +1,16 @@
 <!-- TagCommander datalayer by DZ 2021 Shopify BASIC checkout only -->
 
-{% assign ca_account_id = "0000" %} 		{% comment %} you need to enter your TagCommander account ID here 				{% endcomment %}
-{% assign ca_container_filename = ""%} 		{% comment %} you need to enter your TagCommander container file name here 		{% endcomment %}
-{% assign ca_environment = "" %}			{% comment %} enter exactly "\/uat" for UAT environment, leave empty for Prod 	{% endcomment %}
-{% assign ca_tagco_enabled = true %}		{% comment %} enter false to disable TagCommander				 				{% endcomment %}
+<!-- you need to enter your TagCommander account ID here -->
+{% assign ca_account_id = "0000" %} 		
+
+<!-- you need to enter your TagCommander container file name here -->
+{% assign ca_container_filename = ""%} 		
+
+<!-- enter exactly "\/uat" for UAT environment, leave empty for Prod -->
+{% assign ca_environment = "" %}			
+
+<!-- enter false to disable TagCommander -->
+{% assign ca_tagco_enabled = true %}		
 
 
 <script type="text/javascript">
@@ -165,9 +172,9 @@
 // add here any console logging
 {% endif %}
 
-{% if settings.ca_account_id and settings.ca_tagco_enabled and settings.ca_container_filename %}
+{% if ca_account_id and ca_tagco_enabled and ca_container_filename %}
     (function(a,b,c,d){
-      	a='//cdn.tagcommander.com/{{ settings.ca_account_id }}{{ settings.ca_environment }}/{{ settings.ca_container_filename }}';
+      	a='//cdn.tagcommander.com/{{ ca_account_id }}{{ ca_environment }}/{{ ca_container_filename }}';
     	b=document;c='script';d=b.createElement(c);d.src=a;d.type='text/java'+c;d.async=true;
     	b.body.appendChild(d);
     })();
