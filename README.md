@@ -128,7 +128,7 @@ Go back to the Theme Code edit section, as you did in Step 1.
 
 	![Shopify_add_inclusion_in_layout](/Screenshots/Shopify_add_inclusion_in_layout.png)
 
-### 5b. Including the setup on the checkout tunnel - Shopify **Basic** --UNDER CONSTRUCTION--
+### 5b. Including the setup on the checkout tunnel - Shopify **Basic**
 Go back to the Theme Code edit section, as you did in Step 1.
 1. Scroll to Layout. You'll see the layout files. Typically you'll have theme.liquid
 2. Copy the following two lines into the clipboard
@@ -150,10 +150,17 @@ Go back to the Theme Code edit section, as you did in Step 1.
 	![Shopify Basic Checkout Pers 2](/Screenshots/Shopify_basic_checkout_pers_2.png)
 	
 6. Manually edit the beginning of the code, in particular the lines:
-{% assign ca_account_id = "0000" %} 		{% comment %} you need to enter your TagCommander account ID here 		{% endcomment %}
-{% assign ca_container_filename = ""%} 		{% comment %} you need to enter your TagCommander container file name here 	{% endcomment %}
-{% assign ca_environment = "" %}		{% comment %} enter exactly "\/uat" for UAT environment, leave empty for Prod 	{% endcomment %}
-{% assign ca_tagco_enabled = true %}		{% comment %} enter false to disable TagCommander				{% endcomment %}
+<!-- you need to enter your TagCommander account ID here -->
+{% assign ca_account_id = "0000" %} 		
+
+<!-- you need to enter your TagCommander container file name here -->
+{% assign ca_container_filename = ""%} 		
+
+<!-- enter exactly "\/uat" for UAT environment, leave empty for Prod -->
+{% assign ca_environment = "" %}			
+
+<!-- enter false to disable TagCommander -->
+{% assign ca_tagco_enabled = true %}	
 
 7. Scroll down and save
 
@@ -167,5 +174,6 @@ To perform a basic check on the setup, install the Commanders Act chrome extensi
 4. Make sure you're on the console tab
 5. on the command line enter "tc_vars" ; this will visualize the datalayer :
 	![site_console_dl_qa](/Screenshots/site_console_dl_qa.png)
+		
 ## Licence
 See the LICENCE file for details.
