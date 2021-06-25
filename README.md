@@ -150,17 +150,17 @@ Go back to the Theme Code edit section, as you did in Step 1.
 	![Shopify Basic Checkout Pers 2](/Screenshots/Shopify_basic_checkout_pers_2.png)
 	
 6. Manually edit the beginning of the code, in particular the lines:
-<!-- you need to enter your TagCommander account ID here -->
-{% assign ca_account_id = "0000" %} 		
+	<!-- you need to enter your TagCommander account ID here -->
+	{% assign ca_account_id = "0000" %} 		
 
-<!-- you need to enter your TagCommander container file name here -->
-{% assign ca_container_filename = ""%} 		
+	<!-- you need to enter your TagCommander container file name here -->
+	{% assign ca_container_filename = ""%} 		
 
-<!-- enter exactly "\/uat" for UAT environment, leave empty for Prod -->
-{% assign ca_environment = "" %}			
+	<!-- enter exactly "\/uat" for UAT environment, leave empty for Prod -->
+	{% assign ca_environment = "" %}			
 
-<!-- enter false to disable TagCommander -->
-{% assign ca_tagco_enabled = true %}	
+	<!-- enter false to disable TagCommander -->
+	{% assign ca_tagco_enabled = true %}	
 
 7. Scroll down and save
 
