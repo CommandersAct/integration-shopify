@@ -1,4 +1,4 @@
-<!-- TagCommander datalayer by DZ 2021 -->
+<!-- TagCommander datalayer -->
 <script type="text/javascript">
   var tc_current_product = {};
   var tc_current_product_list = [];
@@ -81,7 +81,7 @@
       			{% endif %}
     		{% endfor %}
   		}
-  tc_current_product_list.push(tc_current_product);
+		tc_current_product_list.push(tc_current_product);
   	{% endif %}
   {% endfor %}
 {% elsif template.name == 'collection' %}
@@ -122,6 +122,24 @@
 	{% endif %}
 {% else %}
   	"user_logged": "0",
+{% endif %}
+{% if template.name == 'product' %}
+	{% for item in search.results %}
+		{% if item.object_type == 'product' %}
+			"product_id" : "{{ item.id }}",
+    		"product_name" : "{{ item.title }}",
+    		"product_url": "{{ item.url }}",
+    		"product_vendor": "{{ item.vendor }}",
+            "product_sku": "{{ item.sku }}",
+            "product_collections":(function(){ return [{% for collection in item.collections %}"{{ collection.title }}",{% endfor %}];})(),
+    		{% for variant in item.variants %}
+      			{% if variant.price == item.price_min %}
+        			"product_unitprice" : "{{ variant.price | money_without_currency }}",
+        			"product_variant_id" : "{{ variant.id }}",
+      			{% endif %}
+    		{% endfor %}
+		{% endif %}
+	{% endfor %}
 {% endif %}
     "product_list": tc_current_product_list,
     "cart": tc_current_cart,
