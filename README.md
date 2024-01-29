@@ -1,4 +1,5 @@
-# ![TagCo logo](/Screenshots/tag.png) Shopify Integration
+[![Commanders Act Logo](/Screenshots/CommandersAct.png)](https://www.commandersact.com/)
+# Shopify Integration
 ## Overview
 Welcome to TagCommander, the Commanders Act TMS solution, we are glad to help you to add it to your Shopify based e-commerce, easily and in a time-effective fashion.
 This procedure will achieve the following:
